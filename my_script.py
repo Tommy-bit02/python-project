@@ -1,7 +1,7 @@
 def start_adventure():
 
-    living_situation = input("Do you live in a house or an apartment? 
-(Enter 'house' or 'apartment'): ").lower()
+    living_situation = input("Do you live in a house or an apartment? (Enter 'house' or 'apartment'): 
+").lower()
     
     if living_situation == 'apartment':
         print("Thank you for the input to your demise and to begin you 
