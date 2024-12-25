@@ -1,3 +1,4 @@
+```mermaid
 graph TD
     A[Start Game] --> B[Intro Narration]
     B --> C[Moral Choices]
@@ -8,9 +9,9 @@ graph TD
     E --> G
     F --> G
 
-    G[Exploration Choices] -->|Choice 1: Hospital| H[Visit Hospital]
-    G -->|Choice 2: Forest| I[Visit Forest]
-    G -->|Choice 3: Fortify Position| J[Stay in Position]
+    G[Exploration Choices] -->|Choice 1: Go to Hospital| H[Visit Hospital]
+    G -->|Choice 2: Go to Forest| I[Visit Forest]
+    G -->|Choice 3: Stay and Fortify| J[Stay in Position]
     H --> K[Scavenging Choices]
     I --> L[Combat Choices]
     J --> M[Wait for Next Move]
@@ -68,4 +69,3 @@ graph TD
     Z -->|Good Ending| AE[Good Ending: United We Stand]
     Z -->|Bad Ending| AF[Bad Ending: Alone and Betrayed]
     Z -->|Neutral Ending| AG[Neutral Ending: Survival is a Struggle]
-
