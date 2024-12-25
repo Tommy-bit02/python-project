@@ -1,163 +1,216 @@
-def start_adventure():
+"""
+Class: CSO 1035-01
+Author: Tommy Xiong
+Date: 12-24-24
+Assignment: Python Project Assignment
+"""
+class PlayerStats:
+    def __init__(self):
+        self.reputation = 0
+        self.health = 100
+        self.stamina = 100
+        self.morale = 100
 
-    living_situation = input("Do you live in a house or an apartment? (Enter 'house' or 'apartment'): 
-").lower()
-    
-    if living_situation == 'apartment':
-        print("Thank you for the input to your demise and to begin you 
-awake to screams and a loud car explosion outside you're apartment.")
-        print("Choose your path wisely...\n")
-        print("1. Stay inside and barricade the doors.")
-        print("2. Try to find the local authorities/police station.")
-        print("3. Gather any supplies in your apartment and head to the 
-countryside.")
-        print("4. Try to contact/find your family and friends.")
-        print("5. You get a notification on your phone about a military 
-facility near St. Paul. Would you want to head towards the military 
-base?")
-        print("6. Try to find a boat and escape by driving through the 
-Mississippi River.")
-        print("7. Search for other survivors. Bigger groups increase your 
-survival rate to not get your brains eaten lol.")
-        print("8. Drive in your car to find a safe haven until things calm 
-down.")
-        print("9. Head to the roof and signal for help.")
-    else:
-        print("Got it! To begin you awake to the smell of smoke and hear 
-the neighbors screaming and a horfic bark like a dog but to you it sounds 
-more human like and immediatly understand its the apocalypse.")
-        print("Choose your path wisely...\n")
-        print("1. Stay inside and barricade the doors.")
-        print("2. Try to find the local authorities/police station.")
-        print("3. Gather any supplies in your home and head to the 
-countryside.")
-        print("4. Try to contact/find your family and friends.")
-        print("5. You get a notification on your phone about a military 
-facility near St. Paul. Would you want to head towards the military 
-base?")
-        print("6. Try to find a boat and escape by driving through the 
-Mississippi River.")
-        print("7. Search for other survivors. Bigger groups increase your 
-survival rate to not get your brains eaten lol.")
-        print("8. Hide in your basement.")
-        print("9. Wait it out and climb to your roof and signal for 
-help.")
+    def change_reputation(self, value):
+        self.reputation += value
+        print(f"Reputation: {self.reputation}")
 
-    choice = get_user_choice(9)
+    def change_health(self, value):
+        self.health += value
+        print(f"Health: {self.health}")
 
-    if choice == 1:
-        stay_inside()
-    elif choice == 2:
-        police_station()
-    elif choice == 3:
-        countryside()
-    elif choice == 4:
-        find_family()
-    elif choice == 5:
-        military_base()
-    elif choice == 6:
-        escape_by_sea()
-    elif choice == 7:
-        find_survivors()
-    elif choice == 8:
-        if living_situation == 'apartment':  # For apartment choice, we 
-drive in the car
-            drive_to_safety()
-        else:  # For house choice, the player hides in the basement
-            hide_in_basement()
-    elif choice == 9:
-        signal_for_help()
+    def change_stamina(self, value):
+        self.stamina += value
+        print(f"Stamina: {self.stamina}")
 
-def get_user_choice(max_choice):
-    while True:
-        try:
-            choice = int(input(f"Enter your choice (1-{max_choice}): "))
-            if 1 <= choice <= max_choice:
-                return choice
-            else:
-                print(f"Please enter a valid option (1-{max_choice}):")
-        except ValueError:
-            print(f"Please enter a valid option (1-{max_choice}):")
+    def change_morale(self, value):
+        self.morale += value
+        print(f"Morale: {self.morale}")
 
-def stay_inside():
-    print("You decide to stay inside and barricade the doors.")
-    print("After a few days, the food runs out and the zombies break 
-through. You didn't survive.")
-    end_adventure()
 
-def police_station():
-    print("You run to the nearest police station.")
-    print("The police station is overrun with zombies. You didn't 
-survive.")
-    end_adventure()
+class NPC:
+    def __init__(self, name, role):
+        self.name = name
+        self.role = role
+        self.trust = 50  # Initial trust level
 
-def countryside():
-    print("You gather supplies and head to the countryside.")
-    print("You find a small group of survivors and manage to stay safe. 
-You join their colony and rebuild a new life. You survived!")
-    end_adventure()
+    def change_trust(self, value):
+        self.trust += value
+        print(f"{self.name}'s trust: {self.trust}")
 
-def find_family():
-    print("You try to find your family and friends.")
-    print("You find them, but they have turned into zombies. You didn't 
-survive.")
-    end_adventure()
 
-def military_base():
-    print("You head to the nearest military base.")
-    print("The military base is overrun, but you manage to find a group of 
-survivors. Together, you form a colony and rebuild. You survived!")
-    end_adventure()
+class Game:
+    def __init__(self):
+        self.player_stats = PlayerStats()
+        self.npcs = {
+            "Chris": NPC("Chris", "Military Comrade"),
+            "Sarah": NPC("Sarah", "Medic"),
+            "Hobo": NPC("Hobo", "Survivor"),
+            "Student": NPC("Student", "Survivor"),
+            "Scientist": NPC("Scientist", "Researcher")
+        }
 
-def escape_by_sea():
-    print("You try to find a boat and escape by sea.")
-    print("You find a boat, but you're stranded on a deserted island. The 
-supplies run out, and you didn't survive.")
-    end_adventure()
+    def start_game(self):
+        print("Welcome to my simulation called 'FrostBite Minnesota Zombies'.")
+        print("Your objective is to survive in a zombie apocalypse and make choices that affect your reputation and ending.")
+        print("Thomas, a National Guard reserve soldier, was deployed to help quell a local riot happening in Minneapolis in the midst of winter.")
+        print("As he sits in the shotgun seat of the armored car, he glances at his clock, wondering if he will make it home to his family.")
+        print("His teammate Chris slaps him on the shoulder and says, 'You're good. We're five minutes away from the location.'")
+        print("Sarah, the team's medic, grumbles, 'It's freezing out here. Why do people have to riot at this time? Aren't they cold—or afraid of frostbite?'")
+        print("Your team was deployed to stop some rioting and looting in Minneapolis. When they arrive near a Best Buy, you see the rioters running.")
+        print("You feel something is off, and your captain orders them to stop moving or face non-lethal weapons.")
+        print("But then you notice the rioters are not just ignoring the orders—they're running straight toward your team.")
+        print("Upon closer inspection, you spot a man in a bloodstained blue jacket who pounces on a woman, tearing her to shreds.")
+        print("It becomes clear: these are zombies. You report the situation to your captain, who pulls out his binoculars and says, 'Oh my God!'")
+        print("He orders you and your team to help those civilians and the situation spirals from there...")
 
-def find_survivors():
-    print("You search for other survivors.")
-    print("You find a group of survivors. Together, you escape the 
-zombies, but you're forced to make a heroic sacrifice to help them reach 
-the government facility.")
-    heroic_sacrifice()
+        self.moral_choices()
+        self.exploration_choices()
+        self.combat_choices()
+        self.npc_interaction()
+        self.critical_decision()
+        self.scavenging_choices()
+        self.check_ending()
 
-def hide_in_basement():
-    print("You hide in the basement.")
-    print("The basement is dark and you run out of supplies. You didn't 
-survive.")
-    end_adventure()
+    def moral_choices(self):
+        print("\nYou come across a group of survivors, some are injured, others seem fine.")
+        print("Do you:")
+        print("1. Help the injured and share your supplies.")
+        print("2. Take supplies and leave them behind.")
+        print("3. Ignore them and keep moving.")
+        choice = input("Enter 1, 2, or 3: ")
 
-def drive_to_safety():
-    print("You drive in your car, trying to find a safe haven.")
-    print("The roads are chaotic, and after a few days of driving, you 
-find a remote town that has set up a safe zone.")
-    print("You survive and find a community of survivors. You've managed 
-to stay safe for now. You survived!")
-    end_adventure()
+        if choice == "1":
+            print("You helped the survivors and shared your supplies. Your reputation improves.")
+            self.player_stats.change_reputation(10)
+            self.player_stats.change_morale(10)
+        elif choice == "2":
+            print("You took the supplies and left the survivors behind. Your reputation worsens.")
+            self.player_stats.change_reputation(-20)
+            self.player_stats.change_morale(-10)
+        elif choice == "3":
+            print("You ignored the survivors and kept moving. No change in reputation.")
+        else:
+            print("Invalid choice. You did nothing.")
 
-def signal_for_help():
-    print("You head to the roof and signal for help.")
-    print("A helicopter sees your signal and rescues you. You survived!")
-    end_adventure()
+    def exploration_choices(self):
+        print("\nYou're at a crossroads: One road leads to an abandoned hospital, the other to a dense forest.")
+        print("Do you:")
+        print("1. Go to the abandoned hospital.")
+        print("2. Head towards the dense forest.")
+        print("3. Stay where you are and fortify your current position.")
+        choice = input("Enter 1, 2, or 3: ")
 
-def heroic_sacrifice():
-    print("You help the group of survivors reach a government facility, 
-but the zombies catch up to you. You make the ultimate sacrifice, ensuring 
-the others are saved.")
-    print("Your sacrifice is heroic, and the survivors are rescued. You 
-didn't survive, but you saved them all.")
-    end_adventure()
+        if choice == "1":
+            print("You head to the abandoned hospital. There may be supplies, but it's dangerous.")
+            self.visit_location("Hospital")
+        elif choice == "2":
+            print("You head into the forest. You may find useful resources, but you could encounter danger.")
+            self.visit_location("Forest")
+        elif choice == "3":
+            print("You decide to stay where you are and fortify your position, waiting for the next move.")
+        else:
+            print("Invalid choice. You remain still.")
 
-def end_adventure():
-    print("The adventure has ended. Would you like to play again? 
-(yes/no)")
-    play_again = input().lower()
+    def visit_location(self, location):
+        print(f"You are visiting the {location}.")
+        if location == "Hospital":
+            self.scavenging_choices()
+        elif location == "Forest":
+            self.combat_choices()
 
-    if play_again == "yes":
-        start_adventure()
-    else:
-        print("Thanks for playing!")
+    def combat_choices(self):
+        print("\nYou're surrounded by zombies. What do you do?")
+        print("1. Fight them head-on.")
+        print("2. Use a flare to distract them and escape.")
+        print("3. Try to hide and wait for them to pass.")
+        choice = input("Enter 1, 2, or 3: ")
 
-# Start the adventure
-start_adventure()
+        if choice == "1":
+            print("You fight the zombies head-on. It's risky, but you manage to kill a few.")
+            self.player_stats.change_health(-10)
+        elif choice == "2":
+            print("You use a flare to distract the zombies. It works, and you manage to escape.")
+            self.player_stats.change_stamina(-10)
+        elif choice == "3":
+            print("You try to hide. It's tense, but the zombies pass by.")
+            self.player_stats.change_stamina(-5)
+        else:
+            print("Invalid choice. The zombies close in!")
+
+    def npc_interaction(self):
+        print("\nYou approach Chris, your military comrade, who looks worried.")
+        print("Do you:")
+        print("1. Reassure him and offer support.")
+        print("2. Tell him to stop worrying and focus on the mission.")
+        print("3. Ignore him and keep moving.")
+
+        choice = input("Enter 1, 2, or 3: ")
+
+        if choice == "1":
+            print("You reassure Chris, and he seems more confident. Your relationship improves.")
+            self.npcs["Chris"].trust += 10
+        elif choice == "2":
+            print("You tell Chris to stop worrying. He doesn't seem happy with you.")
+            self.npcs["Chris"].trust -= 5
+        elif choice == "3":
+            print("You ignore Chris, leaving him worried and uneasy.")
+            self.npcs["Chris"].trust -= 10
+        else:
+            print("Invalid choice. Chris remains uncertain.")
+
+    def critical_decision(self):
+        print("\nA survivor is trapped under rubble. You're with your group, and time is running out.")
+        print("Do you:")
+        print("1. Attempt to save the survivor, risking your own safety.")
+        print("2. Leave the survivor behind and keep moving for your own safety.")
+        print("3. Try to negotiate with the survivor and persuade them to escape on their own.")
+
+        choice = input("Enter 1, 2, or 3: ")
+
+        if choice == "1":
+            print("You risk your safety to save the survivor. You succeed, but you're injured.")
+            self.player_stats.change_health(-10)
+            self.player_stats.change_morale(10)
+        elif choice == "2":
+            print("You leave the survivor behind. The group is upset, and your morale drops.")
+            self.player_stats.change_morale(-20)
+        elif choice == "3":
+            print("You try to convince the survivor to escape alone. They make it, but you're left behind.")
+            self.player_stats.change_health(-5)
+        else:
+            print("Invalid choice. The survivor is lost.")
+
+    def scavenging_choices(self):
+        print("\nYou come across a locked storage container. It could hold important supplies.")
+        print("Do you:")
+        print("1. Break the lock and take whatever is inside.")
+        print("2. Leave the container alone. It might attract unwanted attention.")
+        print("3. Try to pick the lock quietly.")
+
+        choice = input("Enter 1, 2, or 3: ")
+
+        if choice == "1":
+            print("You break the lock, and the supplies are useful, but the noise attracts zombies.")
+            self.combat_choices()
+        elif choice == "2":
+            print("You leave the container alone. No zombies are attracted, but you miss out on supplies.")
+        elif choice == "3":
+            print("You quietly pick the lock and manage to access the supplies without alerting zombies.")
+        else:
+            print("Invalid choice. You waste time.")
+
+    def check_ending(self):
+        if self.player_stats.reputation > 50:
+            print("\nYou've earned the good ending: United We Stand.")
+        elif self.player_stats.reputation < -50:
+            print("\nYou've earned the bad ending: Alone and Betrayed.")
+        else:
+            print("\nYou've earned the neutral ending: Survival is a Struggle.")
+
+
+if __name__ == "__main__":
+    game = Game()
+    game.start_game()
+
+
